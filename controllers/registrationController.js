@@ -1,4 +1,4 @@
-const authService = require('../services/registrationService');
+const RegistrationService = require('../services/registrationService');
 const { validationResult } = require('express-validator');
 const registerUser = async (req, res) => {
 
@@ -9,11 +9,23 @@ const registerUser = async (req, res) => {
     }
 
     try {
-        await authService.register(req.body);
+        await RegistrationService.register(req.body);
         res.status(201).json({ message: 'User registered successfully', data: { success: true} });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
 
-module.exports = { registerUser };
+const activateUser = async (req, res) => {
+
+    const { token } = req.body;
+    try {
+        await RegistrationService.activate(token);
+        res.status(201).json({ message: 'User activated successfully', data: { success: true} });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+
+}
+
+module.exports = { registerUser, activateUser };

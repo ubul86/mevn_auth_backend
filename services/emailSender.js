@@ -21,6 +21,8 @@ class EmailSender {
     async send(params) {
         const { email, username } = params;
 
+        params.frontend_url = process.env.FRONTEND_URL;
+
         const mailOptions = {
             from: process.env.FROM_EMAIL,
             to: email,

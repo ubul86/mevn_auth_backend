@@ -7,7 +7,8 @@ const sendTestEmail = async () => {
     // Teszt paraméterek
     const params = {
         email: 'recipient@example.com',
-        username: 'Test'
+        username: 'Test',
+        activation_token: 'asdqwe',
     };
 
     try {
