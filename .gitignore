@@ -1,0 +1,6 @@
+.env
+node_modules
+package-lock.json
+.idea
+docker_settings/mailhog_data
+docker_settings/mongodb_data

@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: docker_settings/Dockerfile_node
+    container_name: mevn_auth_node
+    volumes:
+      - './:/www/local'
+    restart: always
+    ports:
+      - "${NODE_PORT_HOST}:${NODE_PORT_CONTAINER}"
+    working_dir: /www/local
+    networks:
+      - app-network
+
+  mailhog:
+    image: mailhog/mailhog
+    restart: unless-stopped
+    container_name: mevn_auth_mailhog
+    volumes:
+      - ./docker_settings/mailhog_data:/maildir
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /maildir
+    ports:
+      - "${MAILHOG_SMTP_PORT}:${MAILHOG_SMTP_PORT_CONTAINER}"
+      - "${MAILHOG_WEB_PORT}:${MAILHOG_WEB_PORT_CONTAINER}"
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mevn_auth_mongodb
+    restart: always
+    ports:
+      - "${MONGODB_PORT_HOST}:${MONGODB_PORT_CONTAINER}"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./docker_settings/mongodb_data:/data/db
+    networks:
+      - app-network
+
+  mongo-express:
+    image: mongo-express
+    container_name: mevn_auth_mongo_express
+    restart: always
+    ports:
+      - "${MONGO_EXPRESS_PORT_HOST}:${MONGO_EXPRESS_PORT_CONTAINER}"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_URL: ${MONGO_URI}
+      ME_CONFIG_MONGODB_PORT: ${MONGODB_PORT_HOST}
+      ME_CONFIG_BASICAUTH: true
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGODB_INITDB_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGODB_INITDB_PASSWORD}
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
