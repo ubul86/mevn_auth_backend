@@ -1,6 +1,6 @@
-const EmailSender = require('./EmailSender');
+const EmailSender = require('./emailSender.service');
 
-class RegistrationEmailSender extends EmailSender {
+class RegistrationEmailSenderService extends EmailSender {
     constructor() {
         super();
         this.subject = 'Welcome to Our Service!';
@@ -9,4 +9,4 @@ class RegistrationEmailSender extends EmailSender {
     }
 }
 
-module.exports = RegistrationEmailSender;
+module.exports = RegistrationEmailSenderService;

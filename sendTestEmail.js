@@ -1,4 +1,4 @@
-const RegistrationEmailSender = require('./services/RegistrationEmailSender');
+const RegistrationEmailSender = require('./services/registrationEmailSender.service');
 require('dotenv').config();
 
 const sendTestEmail = async () => {

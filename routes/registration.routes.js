@@ -1,6 +1,6 @@
 const express = require('express');
-const { registerUser, activateUser } = require('../controllers/registrationController');
-const { validateRegistration} = require('../validations/registrationValidation');
+const { registerUser, activateUser } = require('../controllers/registration.controller');
+const { validateRegistration} = require('../validations/registration.validation');
 
 
 const router = express.Router();

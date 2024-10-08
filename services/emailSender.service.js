@@ -3,10 +3,10 @@ const path = require('path');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 
-class EmailSender {
+class EmailSenderService {
     constructor() {
-        if (this.constructor === EmailSender) {
-            throw new Error("Cannot instantiate abstract class EmailSender");
+        if (this.constructor === EmailSenderService) {
+            throw new Error("Cannot instantiate abstract class EmailSenderService");
         }
 
         // A transporter inicializálása
@@ -41,4 +41,4 @@ class EmailSender {
     }
 }
 
-module.exports = EmailSender;
+module.exports = EmailSenderService;

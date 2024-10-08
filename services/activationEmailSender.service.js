@@ -1,6 +1,6 @@
-const EmailSender = require('./EmailSender');
+const EmailSender = require('./emailSender.service');
 
-class ActivationEmailSender extends EmailSender {
+class ActivationEmailSenderService extends EmailSender {
     constructor() {
         super();
         this.subject = 'Activate Your Account!';
@@ -9,4 +9,4 @@ class ActivationEmailSender extends EmailSender {
     }
 }
 
-module.exports = ActivationEmailSender;
+module.exports = ActivationEmailSenderService;

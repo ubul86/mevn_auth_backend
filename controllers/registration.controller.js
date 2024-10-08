@@ -1,4 +1,4 @@
-const RegistrationService = require('../services/registrationService');
+const RegistrationService = require('../services/registration.service');
 const { validationResult } = require('express-validator');
 const registerUser = async (req, res) => {
 

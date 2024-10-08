@@ -1,6 +1,6 @@
-const User = require('../models/User');
+const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
-const RegistrationEmailSender = require('../services/registrationEmailSender')
+const RegistrationEmailSender = require('./registrationEmailSender.service')
 const crypto = require('crypto');
 
 class RegistrationService {
