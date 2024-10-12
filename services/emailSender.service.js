@@ -9,7 +9,6 @@ class EmailSenderService {
             throw new Error("Cannot instantiate abstract class EmailSenderService");
         }
 
-        // A transporter inicializálása
         this.transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: process.env.SMTP_PORT,

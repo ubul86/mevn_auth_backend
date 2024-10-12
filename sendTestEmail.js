@@ -4,7 +4,6 @@ require('dotenv').config();
 const sendTestEmail = async () => {
     const emailSender = new RegistrationEmailSender();
 
-    // Teszt paraméterek
     const params = {
         email: 'recipient@example.com',
         username: 'Test',
